@@ -28,6 +28,17 @@ class MainActivity : AppCompatActivity() {
             newNumber.append(button.text)
         }
 
+        val operationListener = View.OnClickListener { view ->
+            val op = (view as Button).text.toString()
+            val value = newNumber.text.toString()
+
+            if (value.isNotEmpty()) {
+               performOperation(value, op)
+            }
+            pendingOperation = op
+            displayOperation.text = pendingOperation
+        }
+
         // Add OnClickListeners
         button0.setOnClickListener(listener)
         button1.setOnClickListener(listener)
@@ -41,13 +52,16 @@ class MainActivity : AppCompatActivity() {
         button9.setOnClickListener(listener)
         buttondot.setOnClickListener(listener)
 
-//        buttonadd.setOnClickListener(listener)
-//        buttonequals.setOnClickListener(listener)
-//        buttonminus.setOnClickListener(listener)
-//        buttondivide.setOnClickListener(listener)
-//        buttonmultiply.setOnClickListener(listener)
+        buttonadd.setOnClickListener(operationListener)
+        buttonequals.setOnClickListener(operationListener)
+        buttonminus.setOnClickListener(operationListener)
+        buttondivide.setOnClickListener(operationListener)
+        buttonmultiply.setOnClickListener(operationListener)
 
 
+    }
 
+    private fun performOperation(value: String, operation: String) {
+        displayOperation.text = operation
     }
 }
