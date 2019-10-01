@@ -12,6 +12,7 @@ import java.lang.NumberFormatException
 
 private const val STATE_PENDING_OP = "PendingOperation"
 private const val STATE_OPERAND1 = "Operand1"
+private const val STATE_STORED_OPERAND1 = "Operand1_Stored"
 
 class MainActivity : AppCompatActivity() {
 
@@ -99,12 +100,20 @@ class MainActivity : AppCompatActivity() {
         super.onSaveInstanceState(outState)
         if (operand1 != null) {
             outState.putDouble(STATE_OPERAND1, operand1!!)
+            outState.putBoolean(STATE_STORED_OPERAND1, true)
         }
         outState.putString(STATE_PENDING_OP, pendingOperation)
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         super.onRestoreInstanceState(savedInstanceState)
+        if (savedInstanceState.getBoolean(STATE_STORED_OPERAND1, false)) {
+            operand1 = savedInstanceState.getDouble(STATE_OPERAND1)
+        } else {
+            operand1 = null
+        }
 
+        pendingOperation = savedInstanceState.getString(STATE_PENDING_OP, "")
+        displayOperation.text = pendingOperation
     }
 }
