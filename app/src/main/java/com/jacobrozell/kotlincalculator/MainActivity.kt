@@ -1,11 +1,9 @@
 package com.jacobrozell.kotlincalculator
 
-import android.app.Application
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
-import android.widget.TextView
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 import java.lang.NumberFormatException
@@ -16,7 +14,6 @@ private const val STATE_STORED_OPERAND1 = "Operand1_Stored"
 
 class MainActivity : AppCompatActivity() {
 
-    private val displayOperation by lazy(LazyThreadSafetyMode.NONE) { findViewById<TextView>(R.id.operation) }
     private var operand1: Double? = null
     private var pendingOperation = "="
 
@@ -38,10 +35,10 @@ class MainActivity : AppCompatActivity() {
                 performOperation(value, op)
             } catch (e: NumberFormatException) {
                 pendingOperation = op
-                displayOperation.text = pendingOperation
+                operation.text = pendingOperation
             }
             pendingOperation = op
-            displayOperation.text = pendingOperation
+            operation.text = pendingOperation
         }
 
         // Add OnClickListeners
@@ -63,6 +60,21 @@ class MainActivity : AppCompatActivity() {
         buttonminus.setOnClickListener(operationListener)
         buttondivide.setOnClickListener(operationListener)
         buttonmultiply.setOnClickListener(operationListener)
+
+        buttonneg.setOnClickListener {
+            val value = newNumber.text.toString()
+            if (value.isEmpty()) {
+                newNumber.setText("-")
+            } else {
+                try {
+                    var doubleValue = value.toDouble()
+                    doubleValue *= -1
+                    newNumber.setText(doubleValue.toString())
+                } catch (e: NumberFormatException) {
+                    newNumber.setText("")
+                }
+            }
+        }
     }
 
     private fun setOperandTextTo(text: String) {
@@ -114,6 +126,6 @@ class MainActivity : AppCompatActivity() {
         }
 
         pendingOperation = savedInstanceState.getString(STATE_PENDING_OP, "")
-        displayOperation.text = pendingOperation
+        operation.text = pendingOperation
     }
 }
