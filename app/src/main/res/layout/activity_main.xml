@@ -24,7 +24,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/operation"
-            tools:layout_editor_absoluteX="75dp" app:layout_constraintTop_toTopOf="@+id/result"/>
+            app:layout_constraintBottom_toBottomOf="@+id/newNumber" android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toStartOf="@+id/newNumber" app:layout_constraintTop_toTopOf="@+id/result"/>
     <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
