@@ -126,7 +126,7 @@
             android:text="/"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
-            android:id="@+id/buttondivide"
+            android:id="@+id/buttonneg"
             android:width="48dp" android:minWidth="64dp"
             app:layout_constraintBaseline_toBaselineOf="@+id/button9" app:layout_constraintStart_toEndOf="@+id/button9"
             android:layout_marginStart="8dp"/>
@@ -137,8 +137,8 @@
             android:id="@+id/buttonneg"
             android:width="48dp" android:minWidth="64dp"
             android:textSize="12sp"
-            app:layout_constraintStart_toEndOf="@+id/buttondivide"
-            android:layout_marginStart="8dp" app:layout_constraintBaseline_toBaselineOf="@+id/buttondivide"/>
+            app:layout_constraintStart_toEndOf="@+id/buttonneg"
+            android:layout_marginStart="8dp" app:layout_constraintBaseline_toBaselineOf="@+id/buttonneg"/>
     <Button
             android:text="*"
             android:layout_width="wrap_content"

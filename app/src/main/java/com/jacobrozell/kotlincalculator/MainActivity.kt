@@ -58,7 +58,7 @@ class MainActivity : AppCompatActivity() {
         buttonadd.setOnClickListener(operationListener)
         buttonequals.setOnClickListener(operationListener)
         buttonminus.setOnClickListener(operationListener)
-        buttondivide.setOnClickListener(operationListener)
+        buttonneg.setOnClickListener(operationListener)
         buttonmultiply.setOnClickListener(operationListener)
 
         buttonneg.setOnClickListener {
